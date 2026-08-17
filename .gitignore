@@ -1,0 +1,20 @@
+# Python geçici ve derleme dosyaları
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Yerel raporlar ve gizli veriler
+*.txt
+*.csv
+*.json
+wifi_cyber_report.txt
+wifi_raporu.txt
+
+# Sanal ortamlar (Virtual Environments)
+venv/
+env/
+.venv/
+
+# IDE ve Editör ayarları
+.vscode/
+.idea/
