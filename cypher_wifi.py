@@ -14,6 +14,37 @@ RED = '\033[91m'
 BOLD = '\033[1m'
 RESET = '\033[0m'
 
+def cyber_boot_sequence():
+    """Açılışta çalışan havalı Cyberpunk Matrix/System Boot animasyonu."""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+    boot_logs = [
+        "[+] INITIALIZING CYBER-NET CORE v3.2...",
+        "[+] LOADING LOCAL NETWORK INTERFACES...",
+        "[+] CHECKING WINDOWS WLAN API (netsh)... OK",
+        "[+] MOUNTING ARP PROTOCOL DISCOVERY ENGINE... OK",
+        "[+] ENCRYPTION KEYS: UNLOCKED",
+        "[+] SYSTEM STATUS: ONLINE & SECURE (LOCAL MODE)"
+    ]
+    
+    for log in boot_logs:
+        sys.stdout.write(f"{CYAN}{log}{RESET}\n")
+        sys.stdout.flush()
+        time.sleep(0.12)
+    
+    print()
+    
+    # Siber Yükleme Çubuğu (Progress Bar)
+    bar_length = 32
+    for i in range(bar_length + 1):
+        percent = int((i / bar_length) * 100)
+        bar = '█' * i + '-' * (bar_length - i)
+        sys.stdout.write(f"\r{MAGENTA}BOOTING CONSOLE [{GREEN}{bar}{MAGENTA}] {percent}%{RESET}")
+        sys.stdout.flush()
+        time.sleep(0.025)
+    
+    time.sleep(0.4)
+
 def get_profiles():
     """Sistemdeki kayıtlı Wi-Fi profillerini listeler."""
     try:
@@ -96,7 +127,7 @@ def export_report(data):
     filename = "wifi_cyber_report.txt"
     with open(filename, "w", encoding="utf-8") as f:
         f.write("=========================================\n")
-        f.write("     CYBER-NET SYSTEM REPORT v3.1        \n")
+        f.write("     CYBER-NET SYSTEM REPORT v3.2        \n")
         f.write("=========================================\n\n")
         for ssid, pwd in data:
             qr_str = generate_qr_string(ssid, pwd)
@@ -107,6 +138,9 @@ def export_report(data):
     print(f"\n{GREEN}[+] Rapor başarıyla '{filename}' dosyasına kaydedildi.{RESET}")
 
 def main():
+    # Program açılış animasyonunu tetikle
+    cyber_boot_sequence()
+
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         print(f"""{MAGENTA}{BOLD}
@@ -123,8 +157,8 @@ def main():
                                                                                                      
         """)
 
-        # ÖNEMLİ GÜVENLİK NOTU EKLENDİ
-        print(f"{YELLOW}{BOLD}[ÖNEMLİ NOT: GÖSTERİLEN IP ADRESLERİ, ŞİFRELER VE HESAP PROFİLLERİ ÜÇÜNCÜ ŞAHIS İLE PAYLAŞILMAZ, BUNLAR SİZİN BİLGİSAYARINIZA KAYITLI OLMAKTADIR.]{RESET}\n")
+        # ÖNEMLİ GÜVENLİK NOTU
+        print(f"{YELLOW}{BOLD}[ÖNEMLİ NOT: GÖSTERİLEN IP ADRESLERİ, ŞİFRELER VE HESAP PROFİLLERİ ÜÇÜNCÜ ŞAHIS İLE PAYLAŞILMAZ, BUNLAR SİZİN BİLGİSAYARINIZA KAYIT OLMAKTADIR]{RESET}\n")
 
         print(f"{CYAN}[1]{RESET} Tekli Ağ Şifresi & QR Bağlantı Kodu")
         print(f"{CYAN}[2]{RESET} Tüm Kayıtlı Ağları ve Şifreleri Tablo Yap")
